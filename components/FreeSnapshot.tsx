@@ -105,8 +105,7 @@ export default function FreeSnapshot({ result }: Props) {
             </motion.div>
           ))}
         </div>
-
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.8 }}
@@ -143,7 +142,7 @@ export default function FreeSnapshot({ result }: Props) {
               Unlock Full Report for ₹99
             </a>
           </div>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

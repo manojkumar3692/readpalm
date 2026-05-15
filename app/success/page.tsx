@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import html2canvas from "html2canvas";
 import jsPDF from "jspdf";
 
 type PalmReadingResult = {
@@ -44,7 +43,7 @@ type PaidReport = {
 
 export default function SuccessPage() {
   const reportRef = useRef<HTMLDivElement>(null);
-  const [paidReport, setPaidReport] = useState<PaidReport | null>(null);
+  const [paidReport, setPaidReport]:any = useState<PaidReport | null>(null);
 
   useEffect(() => {
     const saved = sessionStorage.getItem("palm_paid_report");
@@ -52,32 +51,97 @@ export default function SuccessPage() {
   }, []);
 
   async function downloadPdf() {
-    if (!reportRef.current) return;
-
-    const canvas = await html2canvas(reportRef.current, {
-      scale: 2,
-      backgroundColor: "#fff8e8",
-    });
-
-    const imgData = canvas.toDataURL("image/png");
     const pdf = new jsPDF("p", "mm", "a4");
-
-    const pdfWidth = 210;
-    const pdfHeight = (canvas.height * pdfWidth) / canvas.width;
-
-    let heightLeft = pdfHeight;
-    let position = 0;
-
-    pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
-    heightLeft -= 297;
-
-    while (heightLeft > 0) {
-      position = heightLeft - pdfHeight;
-      pdf.addPage();
-      pdf.addImage(imgData, "PNG", 0, position, pdfWidth, pdfHeight);
-      heightLeft -= 297;
+  
+    const pageWidth = 210;
+    const margin = 16;
+    const contentWidth = pageWidth - margin * 2;
+    let y = 20;
+  
+    function addPageIfNeeded(space = 20) {
+      if (y + space > 285) {
+        pdf.addPage();
+        y = 20;
+      }
     }
-
+  
+    function addTitle(text: string) {
+      addPageIfNeeded(18);
+      pdf.setFont("helvetica", "bold");
+      pdf.setFontSize(18);
+      pdf.setTextColor(66, 27, 13);
+      pdf.text(text, margin, y);
+      y += 10;
+    }
+  
+    function addText(text: string) {
+      addPageIfNeeded(20);
+      pdf.setFont("helvetica", "normal");
+      pdf.setFontSize(11);
+      pdf.setTextColor(130, 54, 22);
+  
+      const lines = pdf.splitTextToSize(text || "", contentWidth);
+      lines.forEach((line: string) => {
+        addPageIfNeeded(8);
+        pdf.text(line, margin, y);
+        y += 7;
+      });
+  
+      y += 4;
+    }
+  
+    function addSection(title: string, content: string) {
+      addTitle(title);
+      addText(content);
+    }
+  
+    const report = paidReport.report.fullReport;
+    const profile = paidReport.report.userProfile;
+  
+    pdf.setFillColor(66, 27, 13);
+    pdf.rect(0, 0, 210, 45, "F");
+  
+    pdf.setTextColor(246, 185, 75);
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(13);
+    pdf.text("PALM", margin, 18);
+  
+    pdf.setTextColor(255, 248, 232);
+    pdf.setFontSize(22);
+    pdf.text("Personalized Palm Reading Report", margin, 31);
+  
+    y = 60;
+  
+    if (profile) {
+      addTitle("Reading Details");
+      addText(
+        `Name: ${profile.name}\nDate of Birth: ${profile.dob}\nGender: ${profile.gender}\nUploaded Hand: ${profile.uploadedHand}\nTraditional Hand: ${profile.recommendedHand}`
+      );
+    }
+  
+    addSection("Overview", report.overview);
+  
+    addTitle("Palm Line Observations");
+    addText(`Heart Line: ${report.palmTraits.heartLine}`);
+    addText(`Head Line: ${report.palmTraits.headLine}`);
+    addText(`Life Line: ${report.palmTraits.lifeLine}`);
+    addText(`Fate Line: ${report.palmTraits.fateLine}`);
+    addText(`Hand Shape: ${report.palmTraits.handShape}`);
+    addText(`Mounts: ${report.palmTraits.mounts}`);
+  
+    addSection("Personality Reading", report.personality);
+    addSection("Love & Relationships", report.love);
+    addSection("Career Direction", report.career);
+    addSection("Wealth Energy", report.wealth);
+    addSection("Emotional Pattern", report.emotionalPattern);
+    addSection("Life Path Direction", report.lifePath);
+    addSection("Personal Guidance", report.guidance);
+  
+    addSection(
+      "Reflection Note",
+      "This report is intended for entertainment, reflection, and personal insight. Use it as a mirror for self-awareness, not as a guaranteed prediction or professional advice."
+    );
+  
     pdf.save("PALM-Full-Reading-Report.pdf");
   }
 

@@ -1,10 +1,22 @@
 "use client";
 
+import RazorpayPaymentButton from "@/components/RazorpayPaymentButton";
+
 type PalmReadingResult = {
+  userProfile?: {
+    name: string;
+    dob: string;
+    gender: string;
+    uploadedHand: string;
+    recommendedHand: string;
+  };
   teaser: {
+    greeting?: string;
     personality: string;
     love: string;
     career: string;
+    characterSignals?: string[];
+    conversionHook?: string;
   };
   fullReport: {
     overview: string;
@@ -30,117 +42,14 @@ type Props = {
   result?: PalmReadingResult | null;
 };
 
-declare global {
-  interface Window {
-    Razorpay: new (options: {
-      key: string;
-      amount: number;
-      currency: string;
-      name: string;
-      description: string;
-      order_id: string;
-      theme: {
-        color: string;
-      };
-      handler: (response: {
-        razorpay_order_id: string;
-        razorpay_payment_id: string;
-        razorpay_signature: string;
-      }) => void;
-      modal?: {
-        ondismiss?: () => void;
-      };
-    }) => {
-      open: () => void;
-    };
-  }
-}
-
 export default function PremiumReport({ result }: Props) {
-  async function handleRazorpayPayment() {
-    if (!result) {
-      alert("Please generate your free palm reading first.");
-      return;
-    }
-
-    try {
-      const orderRes = await fetch("/api/payment/razorpay-order", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          amount: 9900,
-          currency: "INR",
-        }),
-      });
-
-      const order = await orderRes.json();
-
-      if (!orderRes.ok) {
-        window.location.href = "/payment-error";
-        return;
-      }
-
-      const razorpay = new window.Razorpay({
-        key: order.keyId,
-        amount: order.amount,
-        currency: order.currency,
-        name: "PALM AI",
-        description: "Full Palm Reading Report",
-        order_id: order.orderId,
-        theme: {
-          color: "#087c54",
-        },
-        handler: async function (response) {
-          const verifyRes = await fetch("/api/payment/verify", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              ...response,
-              result,
-            }),
-          });
-
-          const verifyData = await verifyRes.json();
-
-          if (!verifyRes.ok || !verifyData.success) {
-            window.location.href = "/payment-error";
-            return;
-          }
-
-          sessionStorage.setItem(
-            "palm_paid_report",
-            JSON.stringify({
-              paymentId: verifyData.paymentId,
-              report: result,
-            })
-          );
-
-          window.location.href = "/success";
-        },
-        modal: {
-          ondismiss: function () {
-            console.log("Payment popup closed");
-          },
-        },
-      });
-
-      razorpay.open();
-    } catch {
-      window.location.href = "/payment-error";
-    }
-  }
-
   return (
-    <section id="report" className="px-5 py-24">
+    <section id="report" className="px-5 py-10">
       <div className="mx-auto max-w-6xl overflow-hidden rounded-[36px] border border-[#eadcc6] bg-gradient-to-br from-[#fffaf0] via-[#fff8e8] to-[#fdf2dd] shadow-[0_20px_80px_rgba(243,107,5,0.12)]">
         <div className="grid items-center gap-12 p-6 md:grid-cols-2 md:p-12">
           <div>
             <p className="inline-flex rounded-full border border-[#72dfb0] bg-[#e8fff4] px-4 py-2 text-sm font-semibold uppercase tracking-[0.18em] text-[#087c54]">
-              Unlock Full Reading
+            Does This Feel True ?
             </p>
 
             <h2 className="mt-6 text-4xl font-bold leading-tight text-[#421b0d] md:text-6xl">
@@ -148,23 +57,27 @@ export default function PremiumReport({ result }: Props) {
             </h2>
 
             <p className="mt-6 text-lg leading-8 text-[#823616]">
-              Discover deeper insights about your emotional patterns,
-              relationships, personality traits, career direction, wealth
-              energy, palm line traits, and future opportunities through a
-              beautifully generated personalized report.
+            Discover what your unique palm lines reveal about your deeper life path and hidden talents.
+            Know more about Relationship Compatibility , Hidden Emotional Patterns , Wealth & Career Direction , Life Path Guidance
             </p>
 
             <div className="mt-8 flex items-end gap-3">
               <span className="text-5xl font-black text-[#f36b05]">₹99</span>
-              <span className="mb-1 text-[#823616]/40 line-through">₹199</span>
+              <span className="mb-1 text-[#823616]/40 line-through">₹499</span>
             </div>
 
-            <button
-              onClick={handleRazorpayPayment}
-              className="mt-8 w-full rounded-full bg-gradient-to-r from-[#ff8a00] to-[#f36b05] px-8 py-5 text-lg font-bold text-white shadow-xl shadow-orange-300/40 transition hover:scale-[1.02] md:w-auto"
-            >
-              Unlock Full Report
-            </button>
+            <div className="mt-8 max-w-sm">
+              {result ? (
+                <RazorpayPaymentButton visible={true} result={result} />
+              ) : (
+                <a
+                  href="#upload"
+                  className="inline-flex w-full justify-center rounded-full bg-gradient-to-r from-[#ff8a00] to-[#f36b05] px-8 py-5 text-lg font-bold text-white shadow-xl shadow-orange-300/40 transition hover:scale-[1.02]"
+                >
+                  Generate Free Preview First
+                </a>
+              )}
+            </div>
 
             <p className="mt-4 text-sm text-[#823616]/70">
               Instant PDF access • Secure payment • Personalized insight
