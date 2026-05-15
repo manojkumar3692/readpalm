@@ -45,7 +45,7 @@ export default function PrivacyPolicyPage() {
             </p>
   
             <p>
-              For privacy questions, contact us at: support@palmai.com
+              For privacy questions, contact us at: support@readpalm.in
             </p>
           </div>
         </div>

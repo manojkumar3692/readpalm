@@ -11,6 +11,6 @@ export default function robots(): MetadataRoute.Robots {
         "/payment-error/",
       ],
     },
-    sitemap: "https://palmai.com/sitemap.xml",
+    sitemap: "https://readpalm.in/sitemap.xml",
   };
 }

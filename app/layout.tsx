@@ -16,7 +16,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://palmai.com"),
+  metadataBase: new URL("https://readpalm.in"),
   title: {
     default:
       "PALM AI | Free Palm Reading Online by Photo",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     title: "PALM AI | Free AI Palm Reading Online",
     description:
       "Upload your palm photo and get an instant AI-powered palmistry reading for love, career, personality, and life path.",
-    url: "https://palmai.com",
+    url: "https://readpalm.in",
     siteName: "PALM AI",
     type: "website",
     locale: "en_IN",
@@ -84,6 +84,20 @@ export default function RootLayout({
       className={`${playfair.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full">
+
+      <Script
+  src="https://www.googletagmanager.com/gtag/js?id=G-00H4BFFPK1"
+  strategy="afterInteractive"
+/>
+
+<Script id="google-analytics" strategy="afterInteractive">
+  {`
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-00H4BFFPK1');
+  `}
+</Script>
         <Script
           src="https://checkout.razorpay.com/v1/checkout.js"
           strategy="afterInteractive"

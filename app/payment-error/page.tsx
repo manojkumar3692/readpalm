@@ -14,7 +14,7 @@ export default function PaymentErrorPage() {
           </p>
   
           <a
-            href="mailto:support@palmai.com"
+            href="mailto:support@readpalm.in"
             className="mt-8 inline-flex rounded-full bg-[#087c54] px-6 py-3 font-semibold text-white"
           >
             Contact Support

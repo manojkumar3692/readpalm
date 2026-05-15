@@ -37,7 +37,7 @@ export default function RefundPolicyPage() {
             </p>
   
             <p>
-              Contact: support@palmai.com
+              Contact: support@readpalm.in
             </p>
           </div>
         </div>

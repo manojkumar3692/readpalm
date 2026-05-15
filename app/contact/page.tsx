@@ -24,7 +24,7 @@ export default function ContactPage() {
   
           <div className="mt-8 rounded-2xl bg-[#e8fff4] p-6">
             <p className="font-bold text-[#087c54]">Email</p>
-            <p className="mt-2 text-[#823616]">support@palmai.com</p>
+            <p className="mt-2 text-[#823616]">support@readpalm.in</p>
           </div>
   
           <div className="mt-5 rounded-2xl bg-[#fff8e8] p-6">

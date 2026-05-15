@@ -3,10 +3,10 @@ export default function SchemaMarkup() {
       "@context": "https://schema.org",
       "@type": "WebSite",
       name: "PALM",
-      url: "https://palmai.com",
+      url: "https://readpalm.in",
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://palmai.com/?q={search_term_string}",
+        target: "https://readpalm.in/?q={search_term_string}",
         "query-input": "required name=search_term_string",
       },
     };
@@ -15,7 +15,7 @@ export default function SchemaMarkup() {
       "@context": "https://schema.org",
       "@type": "Organization",
       name: "PALM",
-      url: "https://palmai.com",
+      url: "https://readpalm.in",
       description:
         "PALM offers modern palmistry-inspired online palm readings by photo for self-reflection and personal insight.",
     };
