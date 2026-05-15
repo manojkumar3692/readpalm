@@ -12,7 +12,7 @@ export default function SEOContent() {
   
           <div className="mt-6 space-y-5 text-lg leading-9 text-[#823616]">
             <p>
-              PALM AI offers a modern way to experience palm reading online.
+              PALM Reading offers a modern way to experience palm reading online.
               Upload your palm photo and receive a personalized palmistry preview
               focused on personality, love, career direction, emotional patterns,
               and life path reflection.
@@ -21,7 +21,7 @@ export default function SEOContent() {
             <p>
               Whether you are searching for free palm reading, palm reading by
               photo, online palmistry, love palm reading, career palm reading, or
-              palm reading near me, PALM AI gives you an instant digital reading
+              palm reading near me, PALM Reading gives you an instant digital reading
               experience from anywhere in India or worldwide.
             </p>
   

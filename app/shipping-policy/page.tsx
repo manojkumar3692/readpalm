@@ -17,7 +17,7 @@ export default function ShippingPolicyPage() {
   
           <div className="mt-6 space-y-5 leading-8 text-[#823616]">
             <p>
-              PALM AI provides digital products only. No physical product is
+              PALM Reading provides digital products only. No physical product is
               shipped.
             </p>
   

@@ -17,11 +17,11 @@ export default function TermsPage() {
   
           <div className="mt-6 space-y-5 leading-8 text-[#823616]">
             <p>
-              By using PALM AI, you agree to these terms and conditions.
+              By using PALM Reading, you agree to these terms and conditions.
             </p>
   
             <p>
-              PALM AI provides palmistry-inspired readings for entertainment,
+              PALM Reading provides palmistry-inspired readings for entertainment,
               reflection, and personal insight only. Readings are not professional,
               medical, legal, financial, or guaranteed future advice.
             </p>

@@ -2,7 +2,7 @@ const faqs = [
     {
       question: "Can AI really read my palm?",
       answer:
-        "PALM AI uses your palm image to create a palmistry-inspired reading for entertainment and self-reflection. It combines visual analysis with traditional palmistry concepts.",
+        "PALM Reading uses your palm image to create a palmistry-inspired reading for entertainment and self-reflection. It combines visual analysis with traditional palmistry concepts.",
     },
     {
       question: "Which hand should I upload?",
@@ -22,7 +22,7 @@ const faqs = [
     {
       question: "Is this a guaranteed prediction?",
       answer:
-        "No. PALM AI readings are for entertainment, reflection, and personal insight only. They should not be treated as guaranteed predictions or professional advice.",
+        "No. PALM Reading readings are for entertainment, reflection, and personal insight only. They should not be treated as guaranteed predictions or professional advice.",
     },
     {
       question: "Can I get a refund?",
@@ -45,7 +45,7 @@ const faqs = [
             </h2>
   
             <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-[#823616]">
-              Everything you need to know about PALM AI, your palm image, payment,
+              Everything you need to know about PALM Reading, your palm image, payment,
               and report delivery.
             </p>
           </div>

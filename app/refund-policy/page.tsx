@@ -17,7 +17,7 @@ export default function RefundPolicyPage() {
   
           <div className="mt-6 space-y-5 leading-8 text-[#823616]">
             <p>
-              PALM AI sells personalized digital palm reading reports.
+              PALM Reading sells personalized digital palm reading reports.
             </p>
   
             <p>

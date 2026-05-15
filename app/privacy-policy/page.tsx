@@ -24,7 +24,7 @@ export default function PrivacyPolicyPage() {
   
           <div className="mt-6 space-y-5 leading-8 text-[#823616]">
             <p>
-              PALM AI respects your privacy. This policy explains how we collect,
+              PALM Reading respects your privacy. This policy explains how we collect,
               use, and protect information when you use our palm reading service.
             </p>
   

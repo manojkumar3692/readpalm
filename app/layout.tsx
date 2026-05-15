@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://readpalm.in"),
   title: {
     default:
-      "PALM AI | Free Palm Reading Online by Photo",
-    template: "%s | PALM AI",
+      "PALM Reading | Free Palm Reading Online by Photo",
+    template: "%s | PALM Reading",
   },
   description:
     "Get a free palm reading online by uploading your palm photo. Discover palmistry insights about love, career, personality, life path, and download a full personalized palm report.",
@@ -39,24 +39,24 @@ export const metadata: Metadata = {
     "career palm reading",
     "hasta rekha reading online",
   ],
-  authors: [{ name: "PALM AI" }],
-  creator: "PALM AI",
-  publisher: "PALM AI",
+  authors: [{ name: "PALM Reading" }],
+  creator: "PALM Reading",
+  publisher: "PALM Reading",
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "PALM AI | Free AI Palm Reading Online",
+    title: "PALM Reading | Free Palm Reading Online",
     description:
       "Upload your palm photo and get an instant AI-powered palmistry reading for love, career, personality, and life path.",
     url: "https://readpalm.in",
-    siteName: "PALM AI",
+    siteName: "PALM Reading",
     type: "website",
     locale: "en_IN",
   },
   twitter: {
     card: "summary_large_image",
-    title: "PALM AI | Free AI Palm Reading Online",
+    title: "PALM Reading | Free AI Palm Reading Online",
     description:
       "Get a free palm reading online by photo and unlock your full personalized palmistry report.",
   },
