@@ -14,7 +14,7 @@ import SEOContent from "@/components/SEOContent";
 import TrustMetrics from "@/components/TrustMetrics";
 import SchemaMarkup from "@/components/SchemaMarkup";
 import Testimonials from "@/components/Testimonials";
-
+import InternalLinks from "@/components/InternalLinks";
 type PalmReadingResult = {
   teaser: {
     personality: string;
@@ -86,6 +86,33 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-5 py-16">
+  <div className="mx-auto max-w-6xl">
+    <h2 className="text-center text-4xl font-bold text-[#421b0d] md:text-5xl">
+      Popular Palm Reading Tools
+    </h2>
+
+    <div className="mt-10 grid gap-6 md:grid-cols-3">
+      {[
+        ["AI Palm Reading", "/ai-palm-reading"],
+        ["Palm Reading Report", "/palm-reading-report"],
+        ["Online Palm Reading", "/online-palm-reading"],
+        ["Palm Reading By Photo", "/palm-reading-by-photo"],
+        ["Career Palm Reading", "/career-palm-reading"],
+        ["Love Palm Reading", "/love-palm-reading"],
+      ].map(([title, href]) => (
+        <a
+          key={href}
+          href={href}
+          className="rounded-3xl border border-[#eadcc6] bg-white/75 p-6 text-center text-xl font-bold text-[#421b0d] shadow-lg transition hover:-translate-y-1 hover:border-[#72dfb0]"
+        >
+          {title}
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
+
       <PalmUploader setResult={setResult} />
 
       <TrustMetrics />
@@ -104,6 +131,7 @@ export default function Home() {
 
       <SEOContent />
 
+      <InternalLinks/>
       <Footer />
     </main>
   );

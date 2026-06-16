@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import SEOLandingPage from "@/components/SEOLandingPage";
-
+import InternalLinks from "@/components/InternalLinks";
 export const metadata: Metadata = {
   title: "Career Palm Reading | Fate Line & Work Direction",
   description:
@@ -10,6 +10,7 @@ export const metadata: Metadata = {
 
 export default function CareerPalmReadingPage() {
   return (
+    <>
     <SEOLandingPage
       badge="Career Palm Reading"
       title="Career Palm Reading Online"
@@ -39,5 +40,8 @@ export default function CareerPalmReadingPage() {
         },
       ]}
     />
+    <InternalLinks />
+    </>
   );
+
 }

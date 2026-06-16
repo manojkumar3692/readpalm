@@ -6,6 +6,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     "",
 
+    "/ai-palm-reading",
+    "/palm-reading-report",
+
     // SEO Landing Pages
     "/free-palm-reading",
     "/online-palm-reading",
@@ -39,13 +42,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
         ? "monthly"
         : "weekly",
 
-    priority:
-      page === ""
-        ? 1
-        : page.startsWith("/blog")
-        ? 0.8
-        : page.includes("palm-reading")
-        ? 0.9
-        : 0.5,
+        priority:
+        page === ""
+          ? 1.0
+          : ["/ai-palm-reading", "/palm-reading-report"].includes(page)
+          ? 0.95
+          : page.includes("palm-reading")
+          ? 0.9
+          : page.startsWith("/blog")
+          ? 0.8
+          : 0.5,
   }));
 }
